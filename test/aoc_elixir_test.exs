@@ -23,6 +23,6 @@ defmodule AocElixirTest do
   end
 
   test "day 3 part two" do
-    IO.inspect Day3.part_two_all_slopes("./test/inputs/day3.txt")
+    assert 6050183040 == Day3.part_two_all_slopes("./test/inputs/day3.txt")
   end
 end

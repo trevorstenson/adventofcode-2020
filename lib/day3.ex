@@ -20,16 +20,17 @@ defmodule Day3 do
   end
 
   defp test_slope(y_values, x_step, width, data) do
-    Enum.reduce(y_values, 0, fn y, acc ->
+    Enum.with_index(y_values)
+    |> Enum.reduce(0, fn {y, y_idx}, acc ->
       result =
-        {rem((y * x_step), width), y}
+        {rem((y_idx * x_step), width), y}
         |> is_tree(data)
       if result, do: acc + 1, else: acc
     end)
   end
 
   defp gen_y_values(jump, height) do
-    0..height-1 |> Stream.take_every(jump) |> Enum.to_list()
+    0..(height - 1) |> Stream.take_every(jump) |> Enum.to_list()
   end
 
   defp is_tree({x, y}, data) do
