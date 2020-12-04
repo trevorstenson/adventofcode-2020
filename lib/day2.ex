@@ -3,10 +3,9 @@ defmodule Day2 do
   def part_two(filename) do
     prep_input(filename)
     |> Enum.map(fn {x, y, z} ->
-      indices =
-        String.split(x, "-")
-        |> Enum.map(&String.to_integer/1)
-      {indices, y, z}
+      String.split(x, "-")
+      |> Enum.map(&String.to_integer/1)
+      |> (&{&1, y, z}).()
     end)
     |> Enum.reduce(0, fn data, acc ->
       if check_part_two_password(data), do: acc + 1, else: acc
@@ -29,11 +28,10 @@ defmodule Day2 do
   end
 
   def check_password({range, char, password}) do
-    count =
-      Enum.reduce(String.graphemes(password), 0, fn c, acc ->
-        if c == char, do: acc + 1, else: acc
-      end)
-    Enum.member?(range, count)
+    Enum.reduce(String.graphemes(password), 0, fn c, acc ->
+      if c == char, do: acc + 1, else: acc
+    end)
+    |> (&(Enum.member?(range, &1))).()
   end
 
   def construct_data(line) do

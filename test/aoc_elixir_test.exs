@@ -1,7 +1,6 @@
 defmodule AocElixirTest do
   use ExUnit.Case
   doctest AocElixir
-  # import Day1
 
   test "day 1 expense report" do
     assert 870331 == Day1.find_two_entries("./test/inputs/day1.txt")
@@ -16,6 +15,14 @@ defmodule AocElixirTest do
   end
 
   test "day 2 part two" do
-    IO.inspect Day2.part_two("./test/inputs/day2.txt")
+    assert 325 == Day2.part_two("./test/inputs/day2.txt")
+  end
+
+  test "day 3" do
+    assert 274 == Day3.count_trees("./test/inputs/day3.txt")
+  end
+
+  test "day 3 part two" do
+    IO.inspect Day3.part_two_all_slopes("./test/inputs/day3.txt")
   end
 end
